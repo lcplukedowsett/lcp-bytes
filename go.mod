@@ -1,4 +1,4 @@
-module terraform-provider-bytes
+module terraform-provider-bytesnew
 
 go 1.21.3
 
