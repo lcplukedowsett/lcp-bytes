@@ -241,3 +241,42 @@ func (c *Client) CreateSubscription(details SubscriptionDetails) (*OrderDetails,
 
 	return subscriptionInfo, nil
 }
+
+func (c *Client) UpdateSubscription(subscriptionID string, details SubscriptionDetails) (*OrderDetails, error) {
+	url := fmt.Sprintf("%s/api/v2/subscriptions/%s", c.CommerceAPIURL, subscriptionID)
+
+	data, err := json.Marshal(details)
+	if err != nil {
+		return nil, fmt.Errorf("failed to marshal payload: %s", err)
+	}
+
+	req, err := http.NewRequest("PUT", url, bytes.NewBuffer(data))
+	if err != nil {
+		return nil, fmt.Errorf("failed to create request: %s", err)
+	}
+	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.CustomToken))
+	req.Header.Add("Content-Type", "application/json")
+
+	res, err := c.CustomHTTPClient.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("failed to execute request: %s", err)
+	}
+	defer res.Body.Close()
+
+	bodyBytes, err := io.ReadAll(res.Body)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read response body: %s", err)
+	}
+
+	if res.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("unexpected HTTP status code: %d, response body: %s", res.StatusCode, string(bodyBytes))
+	}
+
+	var order OrderDetails
+	err = json.Unmarshal(bodyBytes, &order)
+	if err != nil {
+		return nil, fmt.Errorf("failed to unmarshal response body: %s", err)
+	}
+
+	return &order, nil
+}
