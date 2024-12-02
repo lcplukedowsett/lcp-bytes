@@ -58,7 +58,7 @@ func resourceSubscription() *schema.Resource {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Computed:    false,
-				ForceNew:    true,
+				ForceNew:    false,
 				Description: "The division ID to use for subscription billing",
 			},
 		},
