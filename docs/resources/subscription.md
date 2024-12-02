@@ -37,6 +37,7 @@ resource "bytes_subscription" "example" {
 ### Optional
 
 - `default_admin` (String) The default admin which is assigned to a newly created subscription
+- `division_id` (Integer) The Division ID to be assigned to the newly created subscrption
 
 ### Read-Only
 
