@@ -49,10 +49,10 @@ func Provider() *schema.Provider {
 		},
 		// Define the function to call the resource.
 		ResourcesMap: map[string]*schema.Resource{
-			"bytes_subscription": resourceSubscription(),
+			"bytesnew_subscription": resourceSubscription(),
 		},
 		DataSourcesMap: map[string]*schema.Resource{
-			"bytes_order": datasourceOrder(),
+			"bytesnew_order": datasourceOrder(),
 		},
 		ConfigureContextFunc: providerConfigure,
 	}

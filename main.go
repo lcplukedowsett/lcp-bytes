@@ -1,9 +1,10 @@
 package main
 
 import (
+	"terraform-provider-bytesnew/subscriptions"
+
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/plugin"
-	"terraform-provider-bytesnew/subscriptions"
 )
 
 // Main function, calling the provider
