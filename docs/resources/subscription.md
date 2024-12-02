@@ -7,7 +7,7 @@ description: |-
   This resources is intended to be used to create a new Azure subscription
 ---
 
-# bytes_subscription (Resource)
+# bytesnew_subscription (Resource)
 
 Creates a new Azure subscription.
 
@@ -17,7 +17,7 @@ This resources is intended to be used to create a new Azure subscription
 
 ```terraform
 # Create a new subscription
-resource "bytes_subscription" "example" {
+resource "bytesnew_subscription" "example" {
   friendly_name = "examplesub"
   po_number = "13102023-example"
   default_admin = "username@domain.uk.com"
