@@ -250,7 +250,8 @@ func (c *Client) UpdateSubscription(subscriptionID string, details SubscriptionD
 		return nil, fmt.Errorf("failed to marshal payload: %s", err)
 	}
 
-	req, err := http.NewRequest("PUT", url, bytes.NewBuffer(data))
+	// Change HTTP method from PUT to PATCH
+	req, err := http.NewRequest("PATCH", url, bytes.NewBuffer(data))
 	if err != nil {
 		return nil, fmt.Errorf("failed to create request: %s", err)
 	}
